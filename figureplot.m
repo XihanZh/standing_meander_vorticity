@@ -72,7 +72,7 @@ ax(3)=subplot(3,1,3);
 imagesc(x(46:end-45),y(26:end-25),eke(46:end-45,26:end-25)'),axis xy
 colorbar %caxis([-5e-4 5e-4])%caxis([-8e-3 8e-3])
 set(gca,'fontsize',14)
-caxis([0 0.16])
+caxis([0 0.20])
 colormap(ax(3),'hot')
 set(ax(3),'xtick',[],'ytick',[]);
 ylabel(colorbar,'EKE [m^{2}s^{-2}]')
@@ -83,7 +83,7 @@ v=-0.5:0.1:0.5;
 h2=axes('position',get(ax(3),'position'),'color','none','fontsize',14); %,'XLim',[145 175],'YLim',[48 60],'YDir', 'reverse');
 hold on
 [cn,hn]=contour(X,Y,etabar(46:end-45,26:end-25)',v,'showtext','on','LineWidth',2,'parent',h2);
-clabel(cn,hn,'color','c')
+clabel(cn,hn,-0.5:0.2:0.5,'color','c','fontsize',10)
 colormap(h2,[1,1,1])
 B2=[230,460,125,343];%large meander
 rr=B2;
@@ -188,8 +188,10 @@ print -dpng fig2_maps.png
 load manuscriptvort.mat
 load cooreal.mat
 load blue_red_saturated.mat
+load vortsec54S.mat
 % d=rdmds('Depth');
-la=233;
+% la=233;
+la=200;
 [X,Z]=meshgrid(x(45:end-45),zc(1:168));
 close all
 x0=10;
@@ -698,15 +700,15 @@ print -dpng fig12_idealadvmeander.png
 
 %=====fig13
 load westransreal.mat
-weak=[1:5,12];
-strong=6:11;
+% weak=[1:5,12];
+% strong=6:11;
 t=1:12;
 close all
 yyaxis left
 plot(t,trans_overtime,'s-','LineWidth',2)
 hold on
-plot(t(weak),trans_overtime(weak),'k+','MarkerSize',12,'LineWidth',2)
-plot(t(strong),trans_overtime(strong),'m+','MarkerSize',12,'LineWidth',2)
+% plot(t(weak),trans_overtime(weak),'k+','MarkerSize',12,'LineWidth',2)
+% plot(t(strong),trans_overtime(strong),'m+','MarkerSize',12,'LineWidth',2)
 plot(t,trans_bc,'s--','LineWidth',2)
 ylim([110 150])
 yticks(110:5:150)
@@ -718,7 +720,8 @@ plot(t,trans_bt,'s-','LineWidth',2)
 ylim([0 40])
 yticks(0:5:40)
 grid on
-legend({'total','weak','strong','BC','BT'},'fontsize',14,'Location','bestoutside')
+legend({'total','BC','BT'},'fontsize',14,'Location','bestoutside')
+% legend({'total','weak','strong','BC','BT'},'fontsize',14,'Location','bestoutside')
 xlabel('time [month]','fontsize',14)
 title('transport [Sv]','fontsize',14)
 xticks(1:12)
@@ -729,73 +732,120 @@ xlim([1 12])
 set(gca,'fontsize',14)
 print -dpng fig13_current.png
 
-%---fig14
-load currentsens.mat
+%--fig14
+load etawksts1month.mat
 load cooreal.mat
-load vortmapsens.mat
-load blue_red_saturated.mat
 W=[46,600-45,26,400-25];
 rr=W;
-[X,Y]=meshgrid(x(rr(1):rr(2)),y(rr(3):rr(4)));
+v=-0.5:0.1:0.5;
+close all
+h1=gca;
+contour(x(rr(1):rr(2)),y(rr(3):rr(4)),etabarwk(rr(1):rr(2),rr(3):rr(4))',v,'showtext','off','LineWidth',2)
+colormap(h1,[0,0,0])
+set(h1,'XTick',[],'YTick',[])
+h2=axes('position',get(h1,'position'),'color','none','fontsize',14);
+hold on
+contour(x(rr(1):rr(2)),y(rr(3):rr(4)),etabarstr(rr(1):rr(2),rr(3):rr(4))',v,'showtext','off','LineWidth',2)
+colormap(h2,[1,0,0])
+yticks(-58:2:-50)
+yticklabels({'58^{\circ}S','56^{\circ}S','54^{\circ}S',...
+    '52^{\circ}S','50^{\circ}S'})
+xticks(140:5:160)
+xticklabels({'140^{\circ}E','145^{\circ}E','150^{\circ}E',...
+    '155^{\circ}E','160^{\circ}E'})
+xlabel('Longitude','fontsize',14)
+ylabel('Latitude','fontsize',14)
+set(h2,'fontsize',14)
+print -dpng fig14_sshsense.png
+
+%--fig15
+load vortsecsense.mat
+load cooreal.mat
+load blue_red_saturated.mat
+d=rdmds('Depth');
+la=200;
+[X,Z]=meshgrid(x(45:end-45),zc(1:168));
 close all
 x0=10;
 y0=10;
 width=800;
-height=3200;
+height=4300;
 set(gcf,'position',[x0,y0,width,height])
-ax(1)=subplot(2,1,1);
-pcolor(X,Y,advwk(rr(1):rr(2),rr(3):rr(4))')
+
+subplot(4,1,1)
+pcolor(X,Z,1e11*sadvsecwkmonth0(45:end-44,1:168)')
 shading flat
-% caxis([-6e-11 6e-11])
-caxis([-8e-11 8e-11])
-colorbar
-colormap(ax(1),map)
-ylabel(colorbar,'\boldmath$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',14)
-set(ax(1),'xtick',[],'ytick',[],'Layer','top');
-h2=axes('position',get(ax(1),'position'),'color','none','fontsize',14);
+caxis([-5 5])
+colorbar('Ticks',-4:2:4)
+ylabel(colorbar,'\boldmath$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',14)%'Rotation',0)
 hold on
-contour(x(rr(1):rr(2)),y(rr(3):rr(4)),etabar_weak(rr(1):rr(2),rr(3):rr(4))',-0.6:0.1:0.6,'ShowText','on','parent',h2);
-colormap(h2,[0,0,0])
-yticks(-58:2:-50)
-yticklabels({'58^{\circ}S','56^{\circ}S','54^{\circ}S',...
-    '52^{\circ}S','50^{\circ}S'})
+plot(x(45:end-45),-d(45:end-45,la),'k','LineWidth',1)
 xticks(140:5:160)
 xticklabels({'140^{\circ}E','145^{\circ}E','150^{\circ}E',...
     '155^{\circ}E','160^{\circ}E'})
-xlabel('Longitude','fontsize',14)
-ylabel('Latitude','fontsize',14)
-set(ax(1),'fontsize',14)
-tobj=title('(a)','fontsize',14);
-tobj.Position=[x(rr(1))+0.4,y(rr(4))+0.1];
+ylabel('Depth [m]','fontsize',14)
+set(gca,'fontsize',14)
+set(gca,'Layer','top')
+tobj=title('(a)','fontsize',12);
+tobj.Position=[x(45)+0.4,zc(1)+0.1];
 
-
-ax(2)=subplot(2,1,2);
-pcolor(X,Y,advstrong(rr(1):rr(2),rr(3):rr(4))')
+subplot(4,1,2)
+pcolor(X,Z,1e11*sadvsecstmonth0(45:end-44,1:168)')
 shading flat
-% caxis([-6e-11 6e-11])
-caxis([-8e-11 8e-11])
-colorbar
-ylabel(colorbar,'\boldmath$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',14)
-colormap(ax(2),map)
-set(ax(2),'xtick',[],'ytick',[],'Layer','top');
-h3=axes('position',get(ax(2),'position'),'color','none','fontsize',14);
+caxis([-5 5])
+colormap(map)
+colorbar('Ticks',-4:2:4)
+ylabel(colorbar,'\boldmath$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',14)%'Rotation',0)
 hold on
-contour(x(rr(1):rr(2)),y(rr(3):rr(4)),etabar_sts(rr(1):rr(2),rr(3):rr(4))',-0.6:0.1:0.6,'ShowText','on','parent',h3);
-colormap(h3,[0,0,0])
-yticks(-58:2:-50)
-yticklabels({'58^{\circ}S','56^{\circ}S','54^{\circ}S',...
-    '52^{\circ}S','50^{\circ}S'})
+plot(x(45:end-45),-d(45:end-45,la),'k','LineWidth',1)
 xticks(140:5:160)
 xticklabels({'140^{\circ}E','145^{\circ}E','150^{\circ}E',...
     '155^{\circ}E','160^{\circ}E'})
-xlabel('Longitude','fontsize',14)
-ylabel('Latitude','fontsize',14)
-set(ax(2),'fontsize',14)
-tobj=title('(b)','fontsize',14);
-tobj.Position=[x(rr(1))+0.4,y(rr(4))+0.1];
-print -dpng fig14_SSHandadv.png
+ylabel('Depth [m]','fontsize',14)
+set(gca,'fontsize',14)
+set(gca,'Layer','top')
+tobj=title('(b)','fontsize',12);
+tobj.Position=[x(45)+0.4,zc(1)+0.1];
+
+subplot(4,1,3)
+pcolor(X,Z,1e11*bvsecwkmonth0(45:end-44,1:168)')
+shading flat
+caxis([-0.5 0.5])
+colormap(map)
+colorbar('Ticks',-0.4:0.2:0.4)
+ylabel(colorbar,'\boldmath$\beta v$','Interpreter','latex','fontsize',14,'fontweight','bold')%'Rotation',0)
+hold on
+plot(x(45:end-45),-d(45:end-45,la),'k','LineWidth',1)
+xticks(140:5:160)
+xticklabels({'140^{\circ}E','145^{\circ}E','150^{\circ}E',...
+    '155^{\circ}E','160^{\circ}E'})
+ylabel('Depth [m]','fontsize',14)
+set(gca,'fontsize',14)
+set(gca,'Layer','top')
+tobj=title('(c)','fontsize',12);
+tobj.Position=[x(45)+0.4,zc(1)+0.1];
+colormap(map)
 
 
+subplot(4,1,4)
+pcolor(X,Z,1e11*bvsecstmonth0(45:end-44,1:168)')
+shading flat
+caxis([-0.5 0.5])
+colormap(map)
+colorbar('Ticks',-0.4:0.2:0.4)
+ylabel(colorbar,'\boldmath$\beta v$','Interpreter','latex','fontsize',14,'fontweight','bold')%'Rotation',0)
+hold on
+plot(x(45:end-45),-d(45:end-45,la),'k','LineWidth',1)
+xticks(140:5:160)
+xticklabels({'140^{\circ}E','145^{\circ}E','150^{\circ}E',...
+    '155^{\circ}E','160^{\circ}E'})
+ylabel('Depth [m]','fontsize',14)
+set(gca,'fontsize',14)
+set(gca,'Layer','top')
+tobj=title('(d)','fontsize',12);
+tobj.Position=[x(45)+0.4,zc(1)+0.1];
+colormap(map)
+print -dpng fig15_sectionsense.png
 
 
 
