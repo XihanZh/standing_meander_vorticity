@@ -118,7 +118,8 @@ ax(1)=subplot(3,1,1);
 imagesc(x(45:end-44),y(26:end-25),1e11*sadv(44:end-44,25:end-25)'),axis xy
 colorbar('Ticks',-4:2:4)
 colormap(ax(1),map)
-ylabel(colorbar,'\boldmath$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',14)%'Rotation',0)
+% ylabel(colorbar,'\boldmath$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',14)%'Rotation',0)
+ylabel(colorbar,'$\bf{u}\cdot\nabla_{H}\zeta$ $(\times10^{11}s^{-2})$','Interpreter','latex','fontsize',18)%'Rotation',0)
 % caxis([-5e-11 5e-11])
 caxis([-5 5])
 set(ax(1),'XTick',[],'YTick',[])
@@ -142,7 +143,8 @@ imagesc(x(45:end-44),y(26:end-25),1e11*stretch(44:end-44,25:end-25)'),axis xy
 colorbar('Ticks',-4:2:4)
 caxis([-5 5])
 colormap(ax(2),map)
-ylabel(colorbar,'\boldmath$f\frac{\partial w}{\partial z}$','Interpreter','latex','fontsize',14)%'Rotation',0)
+% ylabel(colorbar,'\boldmath$f\frac{\partial w}{\partial z}$','Interpreter','latex','fontsize',14)%'Rotation',0)
+ylabel(colorbar,'$f{\frac{\partial w}{\partial z}}$ $(\times10^{11}s^{-2})$','Interpreter','latex','fontsize',20)%'Rotation',0)
 set(ax(2),'XTick',[],'YTick',[])
 h2=axes('position',get(ax(2),'position'),'color','none','fontsize',14);
 hold on
@@ -165,7 +167,8 @@ imagesc(x(45:end-44),y(26:end-25),1e11*bv(44:end-44,25:end-25)'),axis xy
 colorbar('Ticks',-0.4:0.2:0.4)
 caxis([-0.5 0.5])
 colormap(ax(3),map)
-ylabel(colorbar,'\boldmath$\beta v$','Interpreter','latex','fontsize',14,'fontweight','bold')%'Rotation',0)
+% ylabel(colorbar,'\boldmath$\beta v$ $(\times10^{11}s^{-2})$','Interpreter','latex','fontsize',14,'fontweight','bold')%'Rotation',0)
+ylabel(colorbar,'$\beta v$ $(\times10^{11}s^{-2})$','Interpreter','latex','fontsize',20)%'Rotation',0)
 set(ax(3),'XTick',[],'YTick',[])
 h3=axes('position',get(ax(3),'position'),'color','none','fontsize',14);
 hold on
@@ -279,6 +282,7 @@ h2=axes('position',get(ax(1),'position'),'color','none','fontsize',14);
 hold on
 contour(X,Y,etabar(2:end-1,2:end-1)','LineWidth',2,'ShowText','on','parent',h2)
 colormap(h2,[0,0,0])
+ylabel('Distance [km]','fontsize',14)
 % rm=[95,170,35,170];
 rm=[77,163,38,190];
 plot(x(rm(1):rm(2)),y(rm(3))*ones(1,length(rm(1):rm(2))),'r','LineWidth',2)
@@ -298,7 +302,8 @@ advnew(1:end-1,1:end-1)=adv(2:end,2:end);
 pcolor(X,Z,1e11*advnew')
 % pcolor(X,Z,1e11*adv')
 shading flat
-colorbar
+% colorbar
+% colorbar('Ticks',-3:1:3)
 colormap(ax(2),map)
 % caxis([-1e-11 1e-11])
 caxis([-1 1])
@@ -392,7 +397,8 @@ lamsq=(N^2/f^2)*(beta/ubar-k^2);
 caplam=abs(sqrt(lamsq));
 phi=((N^2)*h0)/(f*caplam)*cosh(caplam*z)/sinh(caplam*H); % analytical solution
 nx=201;
-L1=5e5;
+% L1=5e5;
+L1=3e5;
 x=linspace(0,L1,nx);
 [X,Z]=meshgrid(x,z);
 psi=(((N^2)*h0)/(f*caplam)*cosh(caplam*Z)/sinh(caplam*H)).*exp(1i*k*X);
@@ -653,11 +659,12 @@ hold on
 plot(tau,bt,'-s','LineWidth',2)
 plot(tau,bc,'-s','LineWidth',2)
 grid on
-legend({'total','BT','BC'},'fontsize',14,'Location','best')
-xlabel('$\times\tau$','interpreter','latex','fontsize',16)
+legend({'total','barotropic','baroclinic'},'fontsize',14,'Location','best')
+% xlabel('$\times\tau$','interpreter','latex','fontsize',16)
+xlabel('wind multiplier','fontsize',14)
 ylabel('transport [Sv]','fontsize',14)
 set(gca,'fontsize',14)
-print -dpng fig10_idealtrans.png
+print -dpng ~/Desktop/fig10_idealtrans.png
 
 %====fig11
 load windsensideal.mat
@@ -676,7 +683,8 @@ plot([0.5,1,2,3],[mean(lenhf,'omitnan'),mean(lenref,'omitnan'),mean(lendb,'omitn
 % ylim([2.8e6 4.8e6])
 ylabel('contour length [m]','fontsize',14)
 grid on
-xlabel('$\times\tau$','interpreter','latex','fontsize',14)
+%xlabel('$\times\tau$','interpreter','latex','fontsize',14)
+xlabel('wind multiplier','fontsize',14)
 set(gca,'fontsize',14)
 print -dpng fig11_idealmeander.png
 
@@ -688,7 +696,10 @@ bt=[mean(bthf),mean(btref),mean(btdb),mean(bttp)];
 adv=[mean(abs(advhf(rr(1):rr(2),rr(3):rr(4))),'all'),mean(abs(advref(rr(1):rr(2),rr(3):rr(4))),'all'),...
     mean(abs(advdb(rr(1):rr(2),rr(3):rr(4))),'all'),mean(abs(advtp(rr(1):rr(2),rr(3):rr(4))),'all')];
 close all
-plot(bt,1e8*adv,'s-','LineWidth',2)
+% plot(bt,1e8*adv,'s-','LineWidth',2)
+plot(bt,1e8*adv,'.','MarkerSize',20)
+hold on
+plot(0:16,0:16,'k-')
 grid on
 xlabel('barotropic transport [Sv]','fontsize',14)
 ylabel('\boldmath$|\bf{u}\cdot\nabla\zeta|$','Interpreter','latex','fontsize',14)
@@ -696,7 +707,7 @@ ylabel('\boldmath$|\bf{u}\cdot\nabla\zeta|$','Interpreter','latex','fontsize',14
 set(gca,'fontsize',14)
 xlim([0 16])
 ylim([0 16])
-print -dpng fig12_idealadvmeander.png
+print -dpng ~/Desktop/fig12_idealadvmeander.png
 
 %=====fig13
 load westransreal.mat
@@ -720,7 +731,7 @@ plot(t,trans_bt,'s-','LineWidth',2)
 ylim([0 40])
 yticks(0:5:40)
 grid on
-legend({'total','BC','BT'},'fontsize',14,'Location','bestoutside')
+legend({'total','baroclinic','barotropic'},'fontsize',14,'Location','bestoutside')
 % legend({'total','weak','strong','BC','BT'},'fontsize',14,'Location','bestoutside')
 xlabel('time [month]','fontsize',14)
 title('transport [Sv]','fontsize',14)
