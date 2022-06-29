@@ -1,0 +1,112 @@
+# ====================
+# | Model parameters |
+# ====================
+#
+# Continuous equation parameters
+ &PARM01
+
+ tRef = 40*0.,
+ sRef = 40*35.,
+
+ no_slip_sides  = .FALSE.,
+ no_slip_bottom = .FALSE.,
+
+ bottomDragLinear    = 1.1E-3,
+ bottomDragQuadratic = 0.0E-2,
+
+ viscAh = 1.0E+2,
+ viscA4 = 0.0E+8,
+ viscAz = 3.0E-4,
+
+ diffKhT = 0.E-4,
+ diffKzT = 5.E-6,
+
+ diffKhS = 0.E-5,
+ diffKzS = 0.E-5,
+
+ implicitDiffusion = .TRUE.,
+ implicitViscosity = .TRUE.,
+
+ ivdc_kappa = 0.E+3,
+
+ f0   = -1.0E-4,
+ beta =  1.E-11,
+
+ tAlpha = 2.E-4,
+ sBeta  = 0.E-4,
+
+ gravity = 9.81,
+ gBaro   = 9.81,
+
+ rigidLid = .FALSE.,
+ implicitFreeSurface=.TRUE.,
+
+ nonHydrostatic  = .FALSE.,
+ useSingleCpuIO  = .TRUE.,
+ exactConserv    = .TRUE.,
+ staggerTimeStep = .TRUE.,
+
+ readBinaryPrec  = 64,
+ writeBinaryPrec = 64,
+ writeStatePrec  = 64,
+
+ saltStepping  = .FALSE.,
+ tempAdvScheme = 7,
+
+ hFacMin = 0.1,
+ &
+
+# Elliptic solver parameters
+ &PARM02
+ cg2dMaxIters       =   1000,
+ cg2dTargetResidual = 1.E-10,
+
+ cg3dMaxIters       =     50,
+ cg3dTargetResidual = 1.E-10,
+ &
+
+# Time stepping parameters
+ &PARM03
+
+ niter0 = 0,
+
+ nTimeSteps  =    2592000, 
+ deltaT      =      1200.,
+ dumpFreq    =  31104000.,
+ monitorFreq = 311040000.,
+ pChkptFreq  = 311040000.,
+
+# tauThetaClimRelax = 2592000.,
+
+ abEps     = 0.1,
+ chkptFreq = 0.0,
+ &
+
+# Gridding parameters
+ &PARM04
+ usingCartesianGrid      =  .TRUE.,
+ usingSphericalPolarGrid = .FALSE.,
+
+ delX = 192*10420.,
+ delY = 192*10420., 
+ delRFile = 'delZ.init',
+ &
+
+# Input datasets
+#
+#   bathyFile       - File containing bathymetry
+#   hydrogThetaFile - File containing initial potential temperature data
+#   hydrogSaltFile  - File containing initial salinity data
+#   zonalWindFile   - File containing zonal wind data
+#   meridWindFile   - File containing meridional wind data
+#   thetaClimFile   - File containing theta climatology used for relaxation
+#   saltClimFile    - File containing salt climatology used for relaxation
+#
+ &PARM05
+
+ hydrogThetaFile = 'T.init',
+ zonalWindFile   = 'taux.init',
+# thetaClimFile   = 'trlx.init',
+ surfQnetFile    = 'hflx.init', 
+ bathyFile       = 'topog.init',
+ &
