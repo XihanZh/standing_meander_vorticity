@@ -119,7 +119,7 @@ imagesc(x(45:end-44),y(26:end-25),1e11*sadv(44:end-44,25:end-25)'),axis xy
 colorbar('Ticks',-4:2:4)
 colormap(ax(1),map)
 % ylabel(colorbar,'\boldmath$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',14)%'Rotation',0)
-ylabel(colorbar,'$\bf{u}\cdot\nabla_{H}\zeta$ $(\times10^{11}s^{-2})$','Interpreter','latex','fontsize',18)%'Rotation',0)
+ylabel(colorbar,'$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',18)%'Rotation',0)
 % caxis([-5e-11 5e-11])
 caxis([-5 5])
 set(ax(1),'XTick',[],'YTick',[])
@@ -144,7 +144,7 @@ colorbar('Ticks',-4:2:4)
 caxis([-5 5])
 colormap(ax(2),map)
 % ylabel(colorbar,'\boldmath$f\frac{\partial w}{\partial z}$','Interpreter','latex','fontsize',14)%'Rotation',0)
-ylabel(colorbar,'$f{\frac{\partial w}{\partial z}}$ $(\times10^{11}s^{-2})$','Interpreter','latex','fontsize',20)%'Rotation',0)
+ylabel(colorbar,'$-f{\frac{\partial w}{\partial z}}$','Interpreter','latex','fontsize',20)%'Rotation',0)
 set(ax(2),'XTick',[],'YTick',[])
 h2=axes('position',get(ax(2),'position'),'color','none','fontsize',14);
 hold on
@@ -168,7 +168,7 @@ colorbar('Ticks',-0.4:0.2:0.4)
 caxis([-0.5 0.5])
 colormap(ax(3),map)
 % ylabel(colorbar,'\boldmath$\beta v$ $(\times10^{11}s^{-2})$','Interpreter','latex','fontsize',14,'fontweight','bold')%'Rotation',0)
-ylabel(colorbar,'$\beta v$ $(\times10^{11}s^{-2})$','Interpreter','latex','fontsize',20)%'Rotation',0)
+ylabel(colorbar,'$\beta v$','Interpreter','latex','fontsize',20)%'Rotation',0)
 set(ax(3),'XTick',[],'YTick',[])
 h3=axes('position',get(ax(3),'position'),'color','none','fontsize',14);
 hold on
@@ -208,7 +208,8 @@ pcolor(X,Z,1e11*sadvsec(45:end-44,1:168)')
 shading flat
 caxis([-5 5])
 colorbar('Ticks',-4:2:4)
-ylabel(colorbar,'\boldmath$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',14)%'Rotation',0)
+% ylabel(colorbar,'\boldmath$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',14)%'Rotation',0)
+ylabel(colorbar,'$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',18)%'Rotation',0)
 hold on
 plot(x(45:end-45),-d(45:end-45,la),'k','LineWidth',1)
 xticks(140:5:160)
@@ -226,7 +227,8 @@ shading flat
 caxis([-5 5])
 colormap(map)
 colorbar('Ticks',-4:2:4)
-ylabel(colorbar,'\boldmath$f\frac{\partial w}{\partial z}$','Interpreter','latex','fontsize',14)%'Rotation',0)
+% ylabel(colorbar,'\boldmath$f\frac{\partial w}{\partial z}$','Interpreter','latex','fontsize',14)%'Rotation',0)
+ylabel(colorbar,'$-f{\frac{\partial w}{\partial z}}$','Interpreter','latex','fontsize',20)%'Rotation',0)
 hold on
 plot(x(45:end-45),-d(45:end-45,la),'k','LineWidth',1)
 xticks(140:5:160)
@@ -244,7 +246,8 @@ shading flat
 caxis([-0.5 0.5])
 colormap(map)
 colorbar('Ticks',-0.4:0.2:0.4)
-ylabel(colorbar,'\boldmath$\beta v$','Interpreter','latex','fontsize',14,'fontweight','bold')%'Rotation',0)
+% ylabel(colorbar,'\boldmath$\beta v$','Interpreter','latex','fontsize',14,'fontweight','bold')%'Rotation',0)
+ylabel(colorbar,'$\beta v$','Interpreter','latex','fontsize',20)%'Rotation',0)
 hold on
 plot(x(45:end-45),-d(45:end-45,la),'k','LineWidth',1)
 xticks(140:5:160)
@@ -315,8 +318,8 @@ xticks(0:200:2000)
 %     '155^{\circ}E','160^{\circ}E','165^{\circ}E'})
 title('(b)','position',[x(2)+30 zc(1)])
 ylabel('Depth [m]')
-ylabel(colorbar,'\boldmath$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',14)%'Rotation',0)
-
+% ylabel(colorbar,'\boldmath$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',14)%'Rotation',0)
+ylabel(colorbar,'$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',18)%'Rotation',0)
 ax(3)=subplot(4,1,3);
 [X,Z]=meshgrid(x,zc);
 strecthnew=nan(size(stretch));
@@ -331,7 +334,8 @@ plot(x,-d(:,la),'k','LineWidth',2)
 set(gca,'Layer','top','fontsize',14)
 title('(c)','position',[x(2)+30 zc(1)])
 ylabel('Depth [m]')
-ylabel(colorbar,'\boldmath$f\frac{\partial w}{\partial z}$','Interpreter','latex','fontsize',14)%'Rotation',0)
+% ylabel(colorbar,'\boldmath$f\frac{\partial w}{\partial z}$','Interpreter','latex','fontsize',14)%'Rotation',0)
+ylabel(colorbar,'$-f{\frac{\partial w}{\partial z}}$','Interpreter','latex','fontsize',20)%'Rotation',0)
 
 
 ax(4)=subplot(4,1,4);
@@ -349,8 +353,9 @@ set(gca,'Layer','top','fontsize',14)
 title('(d)','position',[x(2)+30 zc(1)])
 ylabel('Depth [m]')
 xlabel('Distance [km]')
-ylabel(colorbar,'\boldmath$\beta v$','Interpreter','latex','fontsize',14,'fontweight','bold')%'Rotation',0)
-print -dpng figure4_idealised.png
+% ylabel(colorbar,'\boldmath$\beta v$','Interpreter','latex','fontsize',14,'fontweight','bold')%'Rotation',0)
+ylabel(colorbar,'$\beta v$','Interpreter','latex','fontsize',20)%'Rotation',0)
+print -dpng fig4_idealised.png
 
 %==figure5====================
 H=4e3;
@@ -418,7 +423,8 @@ colorbar
 % caxis([-5e-10 5e-10])
 caxis([-1e-10 1e-10])
 colormap(map1)
-ylabel(colorbar,'\boldmath$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',14)
+% ylabel(colorbar,'\boldmath$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',14)
+ylabel(colorbar,'$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',18)%'Rotation',0)
 tobj=title('(a)','fontsize',12);
 tobj.Position=[x(1)+10,z(end)+50];
 ylabel('Depth [m]','fontsize',14)
@@ -569,7 +575,8 @@ colorbar
 caxis([-8e-11 8e-11])
 colorbar('Ticks',-8e-11:2e-11:8e-11)
 colormap(map1)
-ylabel(colorbar,'\boldmath$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',14)
+% ylabel(colorbar,'\boldmath$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',14)
+ylabel(colorbar,'$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',18)%'Rotation',0)
 tobj=title('(a)','fontsize',12);
 tobj.Position=[x(1)+10,z(end)+50];
 ylabel('Depth [m]','fontsize',14)
@@ -788,7 +795,8 @@ pcolor(X,Z,1e11*sadvsecwkmonth0(45:end-44,1:168)')
 shading flat
 caxis([-5 5])
 colorbar('Ticks',-4:2:4)
-ylabel(colorbar,'\boldmath$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',14)%'Rotation',0)
+% ylabel(colorbar,'\boldmath$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',14)%'Rotation',0)
+ylabel(colorbar,'$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',18)%'Rotation',0)
 hold on
 plot(x(45:end-45),-d(45:end-45,la),'k','LineWidth',1)
 xticks(140:5:160)
@@ -806,7 +814,8 @@ shading flat
 caxis([-5 5])
 colormap(map)
 colorbar('Ticks',-4:2:4)
-ylabel(colorbar,'\boldmath$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',14)%'Rotation',0)
+% ylabel(colorbar,'\boldmath$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',14)%'Rotation',0)
+ylabel(colorbar,'$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',18)%'Rotation',0)
 hold on
 plot(x(45:end-45),-d(45:end-45,la),'k','LineWidth',1)
 xticks(140:5:160)
@@ -824,7 +833,8 @@ shading flat
 caxis([-0.5 0.5])
 colormap(map)
 colorbar('Ticks',-0.4:0.2:0.4)
-ylabel(colorbar,'\boldmath$\beta v$','Interpreter','latex','fontsize',14,'fontweight','bold')%'Rotation',0)
+% ylabel(colorbar,'\boldmath$\beta v$','Interpreter','latex','fontsize',14,'fontweight','bold')%'Rotation',0)
+ylabel(colorbar,'$\beta v$','Interpreter','latex','fontsize',20)%'Rotation',0)
 hold on
 plot(x(45:end-45),-d(45:end-45,la),'k','LineWidth',1)
 xticks(140:5:160)
@@ -844,7 +854,8 @@ shading flat
 caxis([-0.5 0.5])
 colormap(map)
 colorbar('Ticks',-0.4:0.2:0.4)
-ylabel(colorbar,'\boldmath$\beta v$','Interpreter','latex','fontsize',14,'fontweight','bold')%'Rotation',0)
+% ylabel(colorbar,'\boldmath$\beta v$','Interpreter','latex','fontsize',14,'fontweight','bold')%'Rotation',0)
+ylabel(colorbar,'$\beta v$','Interpreter','latex','fontsize',20)%'Rotation',0)
 hold on
 plot(x(45:end-45),-d(45:end-45,la),'k','LineWidth',1)
 xticks(140:5:160)
