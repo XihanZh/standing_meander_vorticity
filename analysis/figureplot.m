@@ -738,7 +738,7 @@ plot(t,trans_bt,'s-','LineWidth',2)
 ylim([0 40])
 yticks(0:5:40)
 grid on
-legend({'total','baroclinic','barotropic'},'fontsize',14,'Location','bestoutside')
+legend({'total','baroclinic','barotropic'},'fontsize',14,'Location','northwest')
 % legend({'total','weak','strong','BC','BT'},'fontsize',14,'Location','bestoutside')
 xlabel('time [month]','fontsize',14)
 title('transport [Sv]','fontsize',14)
