@@ -285,7 +285,7 @@ h2=axes('position',get(ax(1),'position'),'color','none','fontsize',14);
 hold on
 contour(X,Y,etabar(2:end-1,2:end-1)','LineWidth',2,'ShowText','on','parent',h2)
 colormap(h2,[0,0,0])
-ylabel('Distance [km]','fontsize',14)
+ylabel('Meridional distance [km]','fontsize',14)
 % rm=[95,170,35,170];
 rm=[77,163,38,190];
 plot(x(rm(1):rm(2)),y(rm(3))*ones(1,length(rm(1):rm(2))),'r','LineWidth',2)
@@ -352,7 +352,7 @@ plot(x,-d(:,la),'k','LineWidth',2)
 set(gca,'Layer','top','fontsize',14)
 title('(d)','position',[x(2)+30 zc(1)])
 ylabel('Depth [m]')
-xlabel('Distance [km]')
+xlabel('Zonal distance [km]')
 % ylabel(colorbar,'\boldmath$\beta v$','Interpreter','latex','fontsize',14,'fontweight','bold')%'Rotation',0)
 ylabel(colorbar,'$\beta v$','Interpreter','latex','fontsize',20)%'Rotation',0)
 print -dpng fig4_idealised.png
@@ -428,7 +428,7 @@ ylabel(colorbar,'$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',18)%
 tobj=title('(a)','fontsize',12);
 tobj.Position=[x(1)+10,z(end)+50];
 ylabel('Depth [m]','fontsize',14)
-xlabel('Distance [km]','fontsize',14)
+xlabel('Zonal distance [km]','fontsize',14)
 set(gca,'Layer','top','fontsize',14)
 
 subplot(2,1,2)
@@ -487,7 +487,7 @@ ylabel(colorbar,'\boldmath$\beta v$','Interpreter','latex','fontsize',14,'fontwe
 tobj=title('(a)','fontsize',12);
 tobj.Position=[x(1)+10,z(end)+50];
 ylabel('Depth [m]','fontsize',14)
-xlabel('Distance [km]','fontsize',14)
+xlabel('Zonal distance [km]','fontsize',14)
 set(gca,'Layer','top','fontsize',14)
 
 subplot(2,1,2)
@@ -580,7 +580,7 @@ ylabel(colorbar,'$\bf{u}\cdot\nabla\zeta$','Interpreter','latex','fontsize',18)%
 tobj=title('(a)','fontsize',12);
 tobj.Position=[x(1)+10,z(end)+50];
 ylabel('Depth [m]','fontsize',14)
-xlabel('Distance [km]','fontsize',14)
+xlabel('Zonal distance [km]','fontsize',14)
 set(gca,'Layer','top','fontsize',14)
 
 subplot(2,1,2)
