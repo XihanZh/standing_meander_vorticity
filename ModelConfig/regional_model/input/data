@@ -1,0 +1,118 @@
+# ====================
+# | Model parameters |
+# ====================
+#
+# Continuous equation parameters
+ &PARM01
+
+ tRef = 200*5.,
+ sRef = 200*34.5,
+
+ no_slip_sides  = .TRUE.,
+ no_slip_bottom = .TRUE.,
+
+ bottomDragLinear    = 0.E-3,
+ bottomDragQuadratic = 2.E-3,
+
+ viscAh  = 0.,
+ viscAz  = 1.E-3,
+
+ viscC2Smag = 1.0,
+
+ diffKhT = 0.E+1,
+ diffKzT = 1.E-5,
+
+ diffKhS = 0.E+1,
+ diffKzS = 1.E-5,
+
+ implicitDiffusion = .TRUE.,
+ implicitViscosity = .TRUE.,
+
+ ivdc_kappa = 0.E+3,
+
+ eosType = 'JMD95Z',
+
+ rigidLid = .FALSE.,
+ implicitFreeSurface = .TRUE.,
+
+ nonHydrostatic  = .FALSE.,
+ useSingleCpuIO  = .TRUE.,
+ exactConserv    = .TRUE.,
+ staggerTimeStep = .TRUE.,
+
+ readBinaryPrec  = 64,
+ writeBinaryPrec = 64,
+ writeStatePrec  = 64,
+
+ tempAdvScheme = 7,
+ saltAdvScheme = 7,
+
+ hFacMin = 0.1,
+ &
+
+# Elliptic solver parameters
+ &PARM02
+ cg2dMaxIters       =   1000,
+ cg2dTargetResidual = 1.E-10,
+
+ cg3dMaxIters       =     50,
+ cg3dTargetResidual = 1.E-10,
+ &
+
+# Time stepping parameters
+ &PARM03
+
+ niter0 = 1382400,
+
+ nTimeSteps  =    172800, 
+ deltaT      =      180.,
+ dumpFreq    =   864000.,
+ monitorFreq = 31104000.,
+ pChkptFreq  = 31104000.,
+
+ tauThetaClimRelax = 864000.,
+  tauSaltClimRelax = 864000., 
+
+ abEps     = 0.1,
+ chkptFreq = 0.0,
+
+ periodicExternalForcing = .TRUE.,
+ externForcingPeriod =  2592000.,
+ externForcingCycle  = 31104000.,
+ &
+
+# Gridding parameters
+ &PARM04
+ usingCartesianGrid      = .FALSE.,
+ usingSphericalPolarGrid = .TRUE.,
+
+ xgOrigin = 135.,
+ ygOrigin = -60.,
+
+ delX = 600*0.05,
+ delY = 400*0.03, 
+ delRFile = 'delZ.init',
+ &
+
+# Input datasets
+#
+#   bathyFile       - File containing bathymetry
+#   hydrogThetaFile - File containing initial potential temperature data
+#   hydrogSaltFile  - File containing initial salinity data
+#   zonalWindFile   - File containing zonal wind data
+#   meridWindFile   - File containing meridional wind data
+#   thetaClimFile   - File containing theta climatology used for relaxation
+#   saltClimFile    - File containing salt climatology used for relaxation
+#
+ &PARM05
+
+ uVelInitFile    = 'U.init',
+ vVelInitFile    = 'V.init',
+ hydrogThetaFile = 'T.init',
+ hydrogSaltFile  = 'S.init',
+ zonalWindFile   = 'taux.init',
+ meridWindFile   = 'tauy.init',
+ thetaClimFile   = 'trlx.init',
+  saltClimFile   = 'srlx.init',
+ bathyFile       = 'topog.init',
+ &

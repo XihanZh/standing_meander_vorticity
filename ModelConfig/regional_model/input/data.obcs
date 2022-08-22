@@ -1,0 +1,54 @@
+# Open-boundaries
+ &OBCS_PARM01
+
+ OB_Iwest  = 400*1,
+ OB_Ieast  = 400*600,
+ OB_Jsouth = 600*1,
+ OB_Jnorth = 600*400,
+
+ useOBCSsponge    = .TRUE.,
+ useOBCSbalance   = .TRUE., 
+ useOBCSprescribe = .TRUE.,
+
+ useOrlanskiWest  = .FALSE.,
+ useOrlanskiEast  = .FALSE.,
+ useOrlanskiSouth = .FALSE.,
+ useOrlanskiNorth = .FALSE.,
+
+ OBWuFile = 'OWU.init',
+ OBWvFile = 'OWV.init',
+ OBWtFile = 'OWT.init',
+ OBWsFile = 'OWS.init',
+
+ OBEuFile = 'OEU.init',
+ OBEvFile = 'OEV.init',
+ OBEtFile = 'OET.init',
+ OBEsFile = 'OES.init',
+
+ OBSuFile = 'OSU.init',
+ OBSvFile = 'OSV.init',
+ OBStFile = 'OST.init',
+ OBSsFile = 'OSS.init',
+
+ OBNuFile = 'ONU.init',
+ OBNvFile = 'ONV.init',
+ OBNtFile = 'ONT.init',
+ OBNsFile = 'ONS.init',
+
+# OBCS_monitorFreq= 86400.,
+# OBCS_monSelect = 1,
+ &
+
+# Orlanski parameters
+ &OBCS_PARM02
+# Cmax=0.45,
+# cVelTimeScale=1000.,
+ &
+
+ &OBCS_PARM03
+ Urelaxobcsinner = 2592000.,
+ Urelaxobcsbound = 86400.,
+ Vrelaxobcsinner = 2592000.,
+ Vrelaxobcsbound = 86400.,
+ spongeThickness = 40,
+ &

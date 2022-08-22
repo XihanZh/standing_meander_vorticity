@@ -1,0 +1,129 @@
+# Diagnostic Package Choices
+#-----------------
+# for each output-stream:
+#  filename(n) : prefix of the output file name (only 8.c long) for outp.stream n
+#  frequency(n):< 0 : write snap-shot output every |frequency| seconds
+#               > 0 : write time-average output every frequency seconds
+#  timePhase(n)     : write at time = timePhase + multiple of |frequency|
+#  levels(:,n) : list of levels to write to file (Notes: declared as REAL)
+#                 when this entry is missing, select all common levels of this list
+#  fields(:,n) : list of diagnostics fields (8.c) (see "available_diagnostics.log"
+#                 file for the list of all available diag. in this particular config)
+#-----------------
+ &diagnostics_list
+
+frequency(1) = -31104000.0,
+timePhase(1) =  31104000.0,
+ fields(1,1) = 'MXLDEPTH',
+ filename(1) = 'MXLDEPTH',
+
+frequency(2) = 31104000.0,
+timePhase(2) =  31104000.0,
+fields(1,2) = 'TOTUTEND',
+filename(2) = 'TOTUTEND',
+
+frequency(3) = 31104000.0,
+timePhase(3) =  31104000.0,
+fields(1,3) = 'Um_dPhiX',
+filename(3) = 'Um_dPhiX',
+
+frequency(4) = 31104000.0,
+timePhase(4) =  31104000.0,
+fields(1,4) = 'Um_Cori',
+filename(4) = 'Um_Cori',
+
+frequency(5) = 31104000.0,
+timePhase(5) =  31104000.0,
+fields(1,5) = 'Um_Diss',
+filename(5) = 'Um_Diss',
+
+frequency(6) = 31104000.0,
+timePhase(6) =  31104000.0,
+fields(1,6) = 'Um_Advec',
+filename(6) = 'Um_Advec',
+
+frequency(7) = 31104000.0,
+timePhase(7) =  31104000.0,
+fields(1,7) = 'Um_Ext',
+filename(7) = 'Um_Ext',
+
+frequency(8) = 31104000.0,
+timePhase(8) =  31104000.0,
+fields(1,8) = 'VISrI_Um',
+filename(8) = 'VISrI_Um',
+
+frequency(9) = 31104000.0,
+timePhase(9) =  31104000.0,
+fields(1,9) = 'ETAN',
+filename(9) = 'ETAN',
+
+frequency(10) = 31104000.0,
+timePhase(10) =  31104000.0,
+fields(1,10) = 'PHIHYD',
+filename(10) = 'PHIHYD',
+
+frequency(11) = 31104000.0,
+timePhase(11) =  31104000.0,
+fields(1,11) = 'TOTVTEND',
+filename(11) = 'TOTVTEND',
+
+frequency(12) = 31104000.0,
+timePhase(12) =  31104000.0,
+fields(1,12) = 'Vm_Advec',
+filename(12) = 'Vm_Advec',
+
+frequency(13) = 31104000.0,
+timePhase(13) =  31104000.0,
+fields(1,13) = 'Vm_Cori',
+filename(13) = 'Vm_Cori',
+
+frequency(14) = 31104000.0,
+timePhase(14) =  31104000.0,
+fields(1,14) = 'Vm_dPhiY',
+filename(14) = 'Vm_dPhiY',
+
+frequency(15) = 31104000.0,
+timePhase(15) =  31104000.0,
+fields(1,15) = 'Vm_Diss',
+filename(15) = 'Vm_Diss',
+
+frequency(16) = 31104000.0,
+timePhase(16) =  31104000.0,
+fields(1,16) = 'VISrI_Vm',
+filename(16) = 'VISrI_Vm',
+
+frequency(17) = 31104000.0,
+timePhase(17) =  31104000.0,
+fields(1,17) = 'UVEL',
+filename(17) = 'UVEL',
+
+frequency(18) = 31104000.0,
+timePhase(18) =  31104000.0,
+fields(1,18) = 'VVEL',
+filename(18) = 'VVEL',
+
+frequency(19) = 31104000.0,
+timePhase(19) =  31104000.0,
+fields(1,19) = 'WVEL',
+filename(19) = 'WVEL',
+
+ &
+#
+# Parameter for Diagnostics of per level statistics:
+#-----------------
+# for each output-stream:
+#  stat_fname(n) : prefix of the output file name (only 8.c long) for outp.stream n
+#  stat_freq(n):< 0 : write snap-shot output every |stat_freq| seconds
+#               > 0 : write time-average output every stat_freq seconds
+#  stat_phase(n)    : write at time = stat_phase + multiple of |stat_freq|
+#  stat_region(:,n) : list of "regions" (default: 1 region only=global)
+#  stat_fields(:,n) : list of diagnostics fields (8.c) (see "available_diagnostics.log"
+#                 file for the list of all available diag. in this particular config)
+#-----------------
+ &DIAG_STATIS_PARMS
+# an example just to check the agreement with MONITOR output:
+# stat_fields(1,1)= 'ETAN    ','UVEL    ','VVEL    ','WVEL    ', 'THETA   ',
+#    stat_fname(1)= 'dynStDiag',
+#     stat_freq(1)= -864000.,
+#    stat_phase(1)= 0.,
+ &

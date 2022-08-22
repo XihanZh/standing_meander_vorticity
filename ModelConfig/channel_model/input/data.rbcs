@@ -1,0 +1,14 @@
+ &RBCS_PARM01
+
+ tauRelaxT         = 604800.,
+
+ relaxMaskFile(1)  = 'rbcs_mask.init',
+ relaxTFile        = 'rbcs_temp.init',
+
+ useRBCtemp        = .TRUE.,
+ useRBCsalt        = .FALSE.,
+
+ &
+
+ &RBCS_PARM02
+ &
