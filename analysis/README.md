@@ -2,16 +2,16 @@ This file describes the .mat files and .m files used for the manuscript figures
 
 
 ------------------------------------------------------------------
-| Datasets                               |   Description     
-| blue_red_saturated.mat       |   blue and red colormap
-| cooreal.mat                          |   coordinates of regional model
-| manuscript.mat                    |   regional model properties 
-| manuscriptvort_ideal.mat     |   channel model properties
-| manuscriptvort.mat              |  vorticity maps and sections of regional model
-| manuscriptvort_ideal.mat     |  vorticity maps and sections of channel model
-| vortsecsense.mat                 |  wind sensitivity of vorticity sections of regional model
-| westransreal.mat                  |  inflow transport of regional model
-| windsensideal.mat                | wind sensitivity of transport of channel model
+*.mat files:      
+1. blue_red_saturated.mat : blue and red colormap
+2. cooreal.mat : coordinates of regional model
+3. manuscript.mat : regional model properties 
+4. manuscriptvort_ideal.mat : channel model properties
+5. manuscriptvort.mat : vorticity maps and sections of regional model
+6. manuscriptvort_ideal.mat :  vorticity maps and sections of channel model
+7. vortsecsense.mat : wind sensitivity of vorticity sections of regional model
+8. westransreal.mat : inflow transport of regional model
+9. windsensideal.mat : wind sensitivity of transport of channel model
 
 ---------------------------------------------------------------------
 *.m files:
